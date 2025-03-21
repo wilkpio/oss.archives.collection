@@ -1,0 +1,11 @@
+--- ./libs/locale/src/boost/locale/icu/collator.cpp.orig	2022-12-01 10:43:29.457952110 +0100
++++ ./libs/locale/src/boost/locale/icu/collator.cpp	2022-12-01 10:44:47.694621551 +0100
+@@ -99,7 +99,7 @@
+                     std::vector<uint8_t> tmp;
+                     tmp.resize(str.length() + 1u);
+                     icu::Collator *collate = get_collator(level);
+-                    const int len = collate->getSortKey(str,&tmp[0],tmp.size());
++                    const int len = collate->getSortKey(str,tmp.empty()?nullptr:&tmp[0],tmp.size());
+                     if(len > int(tmp.size())) {
+                         tmp.resize(len);
+                         collate->getSortKey(str,&tmp[0],tmp.size());

@@ -1,0 +1,1010 @@
+diff -Naur boost_1_80_0.orig/boost/container/detail/is_pair.hpp boost_1_80_0.patched/boost/container/detail/is_pair.hpp
+--- boost_1_80_0.orig/boost/container/detail/is_pair.hpp	2022-08-04 04:47:06.000000000 +0200
++++ boost_1_80_0.patched/boost/container/detail/is_pair.hpp	2022-12-01 15:22:11.697281439 +0100
+@@ -38,11 +38,8 @@
+ 
+ struct null_type;
+ 
+-template <
+-  class T0, class T1, class T2,
+-  class T3, class T4, class T5,
+-  class T6, class T7, class T8,
+-  class T9>
++template <class T0, class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8, class T9,
++          class T10, class T11, class T12, class T13, class T14, class T15, class T16, class T17, class T18, class T19>
+ class tuple;
+ 
+ }  //namespace tuples {
+diff -Naur boost_1_80_0.orig/boost/container/detail/pair.hpp boost_1_80_0.patched/boost/container/detail/pair.hpp
+--- boost_1_80_0.orig/boost/container/detail/pair.hpp	2022-08-04 04:47:06.000000000 +0200
++++ boost_1_80_0.patched/boost/container/detail/pair.hpp	2022-12-01 15:16:44.489474121 +0100
+@@ -51,11 +51,9 @@
+ };
+ 
+ template <
+-  class T0, class T1, class T2,
+-  class T3, class T4, class T5,
+-  class T6, class T7, class T8,
+-  class T9>
+-struct is_boost_tuple< boost::tuples::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9> >
++  class T0, class T1, class T2, class T3, class T4, class T5, class T6, class T7, class T8, class T9,
++  class T10, class T11, class T12, class T13, class T14, class T15, class T16, class T17, class T18, class T19>
++struct is_boost_tuple< boost::tuples::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19> >
+ {
+    static const bool value = true;
+ };
+diff -Naur boost_1_80_0.orig/boost/fusion/adapted/boost_tuple/tag_of.hpp boost_1_80_0.patched/boost/fusion/adapted/boost_tuple/tag_of.hpp
+--- boost_1_80_0.orig/boost/fusion/adapted/boost_tuple/tag_of.hpp	2022-08-04 04:47:07.000000000 +0200
++++ boost_1_80_0.patched/boost/fusion/adapted/boost_tuple/tag_of.hpp	2022-12-01 15:16:44.489474121 +0100
+@@ -16,7 +16,9 @@
+     
+     template <
+         class T0, class T1, class T2, class T3, class T4, 
+-        class T5, class T6, class T7, class T8, class T9
++        class T5, class T6, class T7, class T8, class T9,
++        class T10, class T11, class T12, class T13, class T14,
++        class T15, class T16, class T17, class T18, class T19
+     >
+     class tuple;
+ 
+@@ -33,12 +35,14 @@
+     {
+         template <
+             class T0, class T1, class T2, class T3, class T4, 
+-            class T5, class T6, class T7, class T8, class T9
++            class T5, class T6, class T7, class T8, class T9,
++            class T10, class T11, class T12, class T13, class T14,
++            class T15, class T16, class T17, class T18, class T19
+         >
+ #if defined(BOOST_NO_PARTIAL_SPECIALIZATION_IMPLICIT_DEFAULT_ARGS)
+-        struct tag_of<tuples::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>, void >
++        struct tag_of<tuples::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>, void >
+ #else
+-        struct tag_of<tuples::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9> >
++        struct tag_of<tuples::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19> >
+ #endif
+         {
+             typedef boost_tuple_tag type;
+@@ -69,19 +73,23 @@
+ 
+     template <
+         class T0, class T1, class T2, class T3, class T4,
+-        class T5, class T6, class T7, class T8, class T9
++        class T5, class T6, class T7, class T8, class T9,
++        class T10, class T11, class T12, class T13, class T14,
++        class T15, class T16, class T17, class T18, class T19
+     >
+-    struct sequence_tag<tuples::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9> >
++    struct sequence_tag<tuples::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19> >
+     {
+         typedef fusion::fusion_sequence_tag type;
+     };
+ 
+     template <
+         class T0, class T1, class T2, class T3, class T4,
+-        class T5, class T6, class T7, class T8, class T9
++        class T5, class T6, class T7, class T8, class T9,
++        class T10, class T11, class T12, class T13, class T14,
++        class T15, class T16, class T17, class T18, class T19
+     >
+     struct sequence_tag<
+-        tuples::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9> const
++        tuples::tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19> const
+     >
+     {
+         typedef fusion::fusion_sequence_tag type;
+diff -Naur boost_1_80_0.orig/boost/fusion/support/tag_of.hpp boost_1_80_0.patched/boost/fusion/support/tag_of.hpp
+--- boost_1_80_0.orig/boost/fusion/support/tag_of.hpp	2022-08-04 04:47:07.000000000 +0200
++++ boost_1_80_0.patched/boost/fusion/support/tag_of.hpp	2022-12-01 15:16:44.489474121 +0100
+@@ -30,7 +30,9 @@
+ 
+         template <
+             class T0, class T1, class T2, class T3, class T4,
+-            class T5, class T6, class T7, class T8, class T9
++            class T5, class T6, class T7, class T8, class T9,
++            class T10, class T11, class T12, class T13, class T14,
++            class T15, class T16, class T17, class T18, class T19
+         >
+         class tuple;
+ 
+diff -Naur boost_1_80_0.orig/boost/multi_index/composite_key.hpp boost_1_80_0.patched/boost/multi_index/composite_key.hpp
+--- boost_1_80_0.orig/boost/multi_index/composite_key.hpp	2022-08-04 04:47:10.000000000 +0200
++++ boost_1_80_0.patched/boost/multi_index/composite_key.hpp	2022-12-01 15:16:44.490474130 +0100
+@@ -62,16 +62,16 @@
+  */
+ 
+ #if !defined(BOOST_MULTI_INDEX_LIMIT_COMPOSITE_KEY_SIZE)
+-#define BOOST_MULTI_INDEX_LIMIT_COMPOSITE_KEY_SIZE 10
++#define BOOST_MULTI_INDEX_LIMIT_COMPOSITE_KEY_SIZE 20
+ #endif
+ 
+ /* maximum number of key extractors in a composite key */
+ 
+-#if BOOST_MULTI_INDEX_LIMIT_COMPOSITE_KEY_SIZE<10 /* max length of a tuple */
++#if BOOST_MULTI_INDEX_LIMIT_COMPOSITE_KEY_SIZE<20 /* max length of a tuple */
+ #define BOOST_MULTI_INDEX_COMPOSITE_KEY_SIZE \
+   BOOST_MULTI_INDEX_LIMIT_COMPOSITE_KEY_SIZE
+ #else
+-#define BOOST_MULTI_INDEX_COMPOSITE_KEY_SIZE 10
++#define BOOST_MULTI_INDEX_COMPOSITE_KEY_SIZE 20
+ #endif
+ 
+ /* BOOST_PP_ENUM of BOOST_MULTI_INDEX_COMPOSITE_KEY_SIZE elements */
+diff -Naur boost_1_80_0.orig/boost/tuple/detail/tuple_basic.hpp boost_1_80_0.patched/boost/tuple/detail/tuple_basic.hpp
+--- boost_1_80_0.orig/boost/tuple/detail/tuple_basic.hpp	2022-08-04 04:47:13.000000000 +0200
++++ boost_1_80_0.patched/boost/tuple/detail/tuple_basic.hpp	2022-12-01 15:16:44.491474139 +0100
+@@ -79,7 +79,10 @@
+   class T0 = null_type, class T1 = null_type, class T2 = null_type,
+   class T3 = null_type, class T4 = null_type, class T5 = null_type,
+   class T6 = null_type, class T7 = null_type, class T8 = null_type,
+-  class T9 = null_type>
++  class T9 = null_type, class T10 = null_type, class T11 = null_type,
++  class T12 = null_type, class T13 = null_type, class T14 = null_type,
++  class T15 = null_type, class T16 = null_type, class T17 = null_type,
++  class T18 = null_type, class T19 = null_type>
+ class tuple;
+ 
+ // tuple_length forward declaration
+@@ -296,19 +299,27 @@
+     : head (h), tail(t) {}
+ 
+   template <class T1, class T2, class T3, class T4, class T5,
+-            class T6, class T7, class T8, class T9, class T10>
++            class T6, class T7, class T8, class T9, class T10,
++            class T11, class T12, class T13, class T14, class T15,
++            class T16, class T17, class T18, class T19, class T20>
+   cons( T1& t1, T2& t2, T3& t3, T4& t4, T5& t5,
+-        T6& t6, T7& t7, T8& t8, T9& t9, T10& t10 )
++        T6& t6, T7& t7, T8& t8, T9& t9, T10& t10,
++        T11& t11, T12& t12, T13& t13, T14& t14, T15& t15,
++        T16& t16, T17& t17, T18& t18, T19& t19, T20& t20 )
+     : head (t1),
+-      tail (t2, t3, t4, t5, t6, t7, t8, t9, t10, detail::cnull())
++      tail (t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, detail::cnull())
+       {}
+ 
+   template <class T2, class T3, class T4, class T5,
+-            class T6, class T7, class T8, class T9, class T10>
++            class T6, class T7, class T8, class T9, class T10,
++            class T11, class T12, class T13, class T14, class T15,
++            class T16, class T17, class T18, class T19, class T20>
+   cons( const null_type& /*t1*/, T2& t2, T3& t3, T4& t4, T5& t5,
+-        T6& t6, T7& t7, T8& t8, T9& t9, T10& t10 )
++        T6& t6, T7& t7, T8& t8, T9& t9, T10& t10,
++        T11& t11, T12& t12, T13& t13, T14& t14, T15& t15,
++        T16& t16, T17& t17, T18& t18, T19& t19, T20& t20 )
+     : head (),
+-      tail (t2, t3, t4, t5, t6, t7, t8, t9, t10, detail::cnull())
++      tail (t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, detail::cnull())
+       {}
+ 
+   cons( const cons& u ) : head(u.head), tail(u.tail) {}
+@@ -380,12 +391,19 @@
+     : head (h) {}
+ 
+   template<class T1>
+-  cons(T1& t1, const null_type&, const null_type&, const null_type&,
++  cons(T1& t1, const null_type&,
++       const null_type&, const null_type&, const null_type&,
++       const null_type&, const null_type&, const null_type&,
++       const null_type&, const null_type&, const null_type&,
++       const null_type&, const null_type&, const null_type&,
+        const null_type&, const null_type&, const null_type&,
+        const null_type&, const null_type&, const null_type&)
+   : head (t1) {}
+ 
+-  cons(const null_type&,
++  cons(const null_type&, const null_type&,
++       const null_type&, const null_type&, const null_type&,
++       const null_type&, const null_type&, const null_type&,
++       const null_type&, const null_type&, const null_type&,
+        const null_type&, const null_type&, const null_type&,
+        const null_type&, const null_type&, const null_type&,
+        const null_type&, const null_type&, const null_type&)
+@@ -453,18 +471,28 @@
+ 
+ // Tuple to cons mapper --------------------------------------------------
+ template <class T0, class T1, class T2, class T3, class T4,
+-          class T5, class T6, class T7, class T8, class T9>
++          class T5, class T6, class T7, class T8, class T9,
++          class T10, class T11, class T12, class T13, class T14,
++          class T15, class T16, class T17, class T18, class T19>
+ struct map_tuple_to_cons
+ {
+   typedef cons<T0,
+                typename map_tuple_to_cons<T1, T2, T3, T4, T5,
+-                                          T6, T7, T8, T9, null_type>::type
++                                          T6, T7, T8, T9, T10, T11,
++                                          T12, T13, T14, T15, T16, T17,
++                                          T18, T19, null_type>::type
+               > type;
+ };
+ 
+ // The empty tuple is a null_type
+ template <>
+-struct map_tuple_to_cons<null_type, null_type, null_type, null_type, null_type, null_type, null_type, null_type, null_type, null_type>
++struct map_tuple_to_cons<null_type, null_type,
++                         null_type, null_type, null_type,
++                         null_type, null_type, null_type,
++                         null_type, null_type, null_type,
++                         null_type, null_type, null_type,
++                         null_type, null_type, null_type,
++                         null_type, null_type, null_type>
+ {
+   typedef null_type type;
+ };
+@@ -474,14 +502,23 @@
+ // -------------------------------------------------------------------
+ // -- tuple ------------------------------------------------------
+ template <class T0, class T1, class T2, class T3, class T4,
+-          class T5, class T6, class T7, class T8, class T9>
++          class T5, class T6, class T7, class T8, class T9,
++          class T10, class T11, class T12, class T13, class T14,
++          class T15, class T16, class T17, class T18, class T19>
++
+ 
+ class tuple :
+-  public detail::map_tuple_to_cons<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>::type
++  public detail::map_tuple_to_cons<T0, T1, T2, T3, T4, T5,
++                                   T6, T7, T8, T9, T10, T11,
++                                   T12, T13, T14, T15, T16, T17,
++                                   T18, T19>::type
+ {
+ public:
+   typedef typename
+-    detail::map_tuple_to_cons<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>::type inherited;
++    detail::map_tuple_to_cons<T0, T1, T2, T3, T4, T5,
++                              T6, T7, T8, T9, T10, T11,
++                              T12, T13, T14, T15, T16, T17,
++                              T18, T19>::type inherited;
+   typedef typename inherited::head_type head_type;
+   typedef typename inherited::tail_type tail_type;
+ 
+@@ -490,38 +527,59 @@
+   tuple() {}
+ 
+   explicit tuple(typename access_traits<T0>::parameter_type t0)
+-    : inherited(t0, detail::cnull(), detail::cnull(), detail::cnull(),
+-                detail::cnull(), detail::cnull(), detail::cnull(),
+-                detail::cnull(), detail::cnull(), detail::cnull()) {}
++    : inherited(t0,
++            detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
+ 
+   tuple(typename access_traits<T0>::parameter_type t0,
+         typename access_traits<T1>::parameter_type t1)
+-    : inherited(t0, t1, detail::cnull(), detail::cnull(),
+-                detail::cnull(), detail::cnull(), detail::cnull(),
+-                detail::cnull(), detail::cnull(), detail::cnull()) {}
++    : inherited(t0, t1,
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
+ 
+   tuple(typename access_traits<T0>::parameter_type t0,
+         typename access_traits<T1>::parameter_type t1,
+         typename access_traits<T2>::parameter_type t2)
+-    : inherited(t0, t1, t2, detail::cnull(), detail::cnull(),
+-                detail::cnull(), detail::cnull(), detail::cnull(),
+-                detail::cnull(), detail::cnull()) {}
++    : inherited(t0, t1, t2,
++            detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
+ 
+   tuple(typename access_traits<T0>::parameter_type t0,
+         typename access_traits<T1>::parameter_type t1,
+         typename access_traits<T2>::parameter_type t2,
+         typename access_traits<T3>::parameter_type t3)
+-    : inherited(t0, t1, t2, t3, detail::cnull(), detail::cnull(),
+-                detail::cnull(), detail::cnull(), detail::cnull(),
+-                detail::cnull()) {}
++    : inherited(t0, t1, t2, t3,
++            detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
+ 
+   tuple(typename access_traits<T0>::parameter_type t0,
+         typename access_traits<T1>::parameter_type t1,
+         typename access_traits<T2>::parameter_type t2,
+         typename access_traits<T3>::parameter_type t3,
+         typename access_traits<T4>::parameter_type t4)
+-    : inherited(t0, t1, t2, t3, t4, detail::cnull(), detail::cnull(),
+-                detail::cnull(), detail::cnull(), detail::cnull()) {}
++    : inherited(t0, t1, t2, t3, t4,
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
+ 
+   tuple(typename access_traits<T0>::parameter_type t0,
+         typename access_traits<T1>::parameter_type t1,
+@@ -529,8 +587,12 @@
+         typename access_traits<T3>::parameter_type t3,
+         typename access_traits<T4>::parameter_type t4,
+         typename access_traits<T5>::parameter_type t5)
+-    : inherited(t0, t1, t2, t3, t4, t5, detail::cnull(), detail::cnull(),
+-                detail::cnull(), detail::cnull()) {}
++    : inherited(t0, t1, t2, t3, t4, t5,
++            detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
+ 
+   tuple(typename access_traits<T0>::parameter_type t0,
+         typename access_traits<T1>::parameter_type t1,
+@@ -539,8 +601,12 @@
+         typename access_traits<T4>::parameter_type t4,
+         typename access_traits<T5>::parameter_type t5,
+         typename access_traits<T6>::parameter_type t6)
+-    : inherited(t0, t1, t2, t3, t4, t5, t6, detail::cnull(),
+-                detail::cnull(), detail::cnull()) {}
++    : inherited(t0, t1, t2, t3, t4, t5, t6,
++            detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
+ 
+   tuple(typename access_traits<T0>::parameter_type t0,
+         typename access_traits<T1>::parameter_type t1,
+@@ -550,8 +616,11 @@
+         typename access_traits<T5>::parameter_type t5,
+         typename access_traits<T6>::parameter_type t6,
+         typename access_traits<T7>::parameter_type t7)
+-    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, detail::cnull(),
+-                detail::cnull()) {}
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7,
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
+ 
+   tuple(typename access_traits<T0>::parameter_type t0,
+         typename access_traits<T1>::parameter_type t1,
+@@ -562,7 +631,11 @@
+         typename access_traits<T6>::parameter_type t6,
+         typename access_traits<T7>::parameter_type t7,
+         typename access_traits<T8>::parameter_type t8)
+-    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, detail::cnull()) {}
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8,
++            detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
+ 
+   tuple(typename access_traits<T0>::parameter_type t0,
+         typename access_traits<T1>::parameter_type t1,
+@@ -574,9 +647,215 @@
+         typename access_traits<T7>::parameter_type t7,
+         typename access_traits<T8>::parameter_type t8,
+         typename access_traits<T9>::parameter_type t9)
+-    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9) {}
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9,
++            detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
++
++
++  tuple(typename access_traits<T0>::parameter_type t0,
++        typename access_traits<T1>::parameter_type t1,
++        typename access_traits<T2>::parameter_type t2,
++        typename access_traits<T3>::parameter_type t3,
++        typename access_traits<T4>::parameter_type t4,
++        typename access_traits<T5>::parameter_type t5,
++        typename access_traits<T6>::parameter_type t6,
++        typename access_traits<T7>::parameter_type t7,
++        typename access_traits<T8>::parameter_type t8,
++        typename access_traits<T9>::parameter_type t9,
++        typename access_traits<T10>::parameter_type t10)
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10,
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
++
++
++  tuple(typename access_traits<T0>::parameter_type t0,
++        typename access_traits<T1>::parameter_type t1,
++        typename access_traits<T2>::parameter_type t2,
++        typename access_traits<T3>::parameter_type t3,
++        typename access_traits<T4>::parameter_type t4,
++        typename access_traits<T5>::parameter_type t5,
++        typename access_traits<T6>::parameter_type t6,
++        typename access_traits<T7>::parameter_type t7,
++        typename access_traits<T8>::parameter_type t8,
++        typename access_traits<T9>::parameter_type t9,
++        typename access_traits<T10>::parameter_type t10,
++        typename access_traits<T11>::parameter_type t11)
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11,
++            detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
++
++
++  tuple(typename access_traits<T0>::parameter_type t0,
++        typename access_traits<T1>::parameter_type t1,
++        typename access_traits<T2>::parameter_type t2,
++        typename access_traits<T3>::parameter_type t3,
++        typename access_traits<T4>::parameter_type t4,
++        typename access_traits<T5>::parameter_type t5,
++        typename access_traits<T6>::parameter_type t6,
++        typename access_traits<T7>::parameter_type t7,
++        typename access_traits<T8>::parameter_type t8,
++        typename access_traits<T9>::parameter_type t9,
++        typename access_traits<T10>::parameter_type t10,
++        typename access_traits<T11>::parameter_type t11,
++        typename access_traits<T12>::parameter_type t12)
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12,
++            detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
++
++
++  tuple(typename access_traits<T0>::parameter_type t0,
++        typename access_traits<T1>::parameter_type t1,
++        typename access_traits<T2>::parameter_type t2,
++        typename access_traits<T3>::parameter_type t3,
++        typename access_traits<T4>::parameter_type t4,
++        typename access_traits<T5>::parameter_type t5,
++        typename access_traits<T6>::parameter_type t6,
++        typename access_traits<T7>::parameter_type t7,
++        typename access_traits<T8>::parameter_type t8,
++        typename access_traits<T9>::parameter_type t9,
++        typename access_traits<T10>::parameter_type t10,
++        typename access_traits<T11>::parameter_type t11,
++        typename access_traits<T12>::parameter_type t12,
++        typename access_traits<T13>::parameter_type t13)
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13,
++            detail::cnull(), detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
++
++
++  tuple(typename access_traits<T0>::parameter_type t0,
++        typename access_traits<T1>::parameter_type t1,
++        typename access_traits<T2>::parameter_type t2,
++        typename access_traits<T3>::parameter_type t3,
++        typename access_traits<T4>::parameter_type t4,
++        typename access_traits<T5>::parameter_type t5,
++        typename access_traits<T6>::parameter_type t6,
++        typename access_traits<T7>::parameter_type t7,
++        typename access_traits<T8>::parameter_type t8,
++        typename access_traits<T9>::parameter_type t9,
++        typename access_traits<T10>::parameter_type t10,
++        typename access_traits<T11>::parameter_type t11,
++        typename access_traits<T12>::parameter_type t12,
++        typename access_traits<T13>::parameter_type t13,
++        typename access_traits<T14>::parameter_type t14)
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14,
++            detail::cnull(), detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
++
++
++  tuple(typename access_traits<T0>::parameter_type t0,
++        typename access_traits<T1>::parameter_type t1,
++        typename access_traits<T2>::parameter_type t2,
++        typename access_traits<T3>::parameter_type t3,
++        typename access_traits<T4>::parameter_type t4,
++        typename access_traits<T5>::parameter_type t5,
++        typename access_traits<T6>::parameter_type t6,
++        typename access_traits<T7>::parameter_type t7,
++        typename access_traits<T8>::parameter_type t8,
++        typename access_traits<T9>::parameter_type t9,
++        typename access_traits<T10>::parameter_type t10,
++        typename access_traits<T11>::parameter_type t11,
++        typename access_traits<T12>::parameter_type t12,
++        typename access_traits<T13>::parameter_type t13,
++        typename access_traits<T14>::parameter_type t14,
++        typename access_traits<T15>::parameter_type t15)
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15,
++            detail::cnull(),
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
+ 
+ 
++  tuple(typename access_traits<T0>::parameter_type t0,
++        typename access_traits<T1>::parameter_type t1,
++        typename access_traits<T2>::parameter_type t2,
++        typename access_traits<T3>::parameter_type t3,
++        typename access_traits<T4>::parameter_type t4,
++        typename access_traits<T5>::parameter_type t5,
++        typename access_traits<T6>::parameter_type t6,
++        typename access_traits<T7>::parameter_type t7,
++        typename access_traits<T8>::parameter_type t8,
++        typename access_traits<T9>::parameter_type t9,
++        typename access_traits<T10>::parameter_type t10,
++        typename access_traits<T11>::parameter_type t11,
++        typename access_traits<T12>::parameter_type t12,
++        typename access_traits<T13>::parameter_type t13,
++        typename access_traits<T14>::parameter_type t14,
++        typename access_traits<T15>::parameter_type t15,
++        typename access_traits<T16>::parameter_type t16)
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16,
++            detail::cnull(), detail::cnull(), detail::cnull()) {}
++
++
++  tuple(typename access_traits<T0>::parameter_type t0,
++        typename access_traits<T1>::parameter_type t1,
++        typename access_traits<T2>::parameter_type t2,
++        typename access_traits<T3>::parameter_type t3,
++        typename access_traits<T4>::parameter_type t4,
++        typename access_traits<T5>::parameter_type t5,
++        typename access_traits<T6>::parameter_type t6,
++        typename access_traits<T7>::parameter_type t7,
++        typename access_traits<T8>::parameter_type t8,
++        typename access_traits<T9>::parameter_type t9,
++        typename access_traits<T10>::parameter_type t10,
++        typename access_traits<T11>::parameter_type t11,
++        typename access_traits<T12>::parameter_type t12,
++        typename access_traits<T13>::parameter_type t13,
++        typename access_traits<T14>::parameter_type t14,
++        typename access_traits<T15>::parameter_type t15,
++        typename access_traits<T16>::parameter_type t16,
++        typename access_traits<T17>::parameter_type t17)
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17,
++            detail::cnull(), detail::cnull()) {}
++
++
++  tuple(typename access_traits<T0>::parameter_type t0,
++        typename access_traits<T1>::parameter_type t1,
++        typename access_traits<T2>::parameter_type t2,
++        typename access_traits<T3>::parameter_type t3,
++        typename access_traits<T4>::parameter_type t4,
++        typename access_traits<T5>::parameter_type t5,
++        typename access_traits<T6>::parameter_type t6,
++        typename access_traits<T7>::parameter_type t7,
++        typename access_traits<T8>::parameter_type t8,
++        typename access_traits<T9>::parameter_type t9,
++        typename access_traits<T10>::parameter_type t10,
++        typename access_traits<T11>::parameter_type t11,
++        typename access_traits<T12>::parameter_type t12,
++        typename access_traits<T13>::parameter_type t13,
++        typename access_traits<T14>::parameter_type t14,
++        typename access_traits<T15>::parameter_type t15,
++        typename access_traits<T16>::parameter_type t16,
++        typename access_traits<T17>::parameter_type t17,
++        typename access_traits<T18>::parameter_type t18)
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18,
++            detail::cnull()) {}
++
++
++  tuple(typename access_traits<T0>::parameter_type t0,
++        typename access_traits<T1>::parameter_type t1,
++        typename access_traits<T2>::parameter_type t2,
++        typename access_traits<T3>::parameter_type t3,
++        typename access_traits<T4>::parameter_type t4,
++        typename access_traits<T5>::parameter_type t5,
++        typename access_traits<T6>::parameter_type t6,
++        typename access_traits<T7>::parameter_type t7,
++        typename access_traits<T8>::parameter_type t8,
++        typename access_traits<T9>::parameter_type t9,
++        typename access_traits<T10>::parameter_type t10,
++        typename access_traits<T11>::parameter_type t11,
++        typename access_traits<T12>::parameter_type t12,
++        typename access_traits<T13>::parameter_type t13,
++        typename access_traits<T14>::parameter_type t14,
++        typename access_traits<T15>::parameter_type t15,
++        typename access_traits<T16>::parameter_type t16,
++        typename access_traits<T17>::parameter_type t17,
++        typename access_traits<T18>::parameter_type t18,
++        typename access_traits<T19>::parameter_type t19)
++    : inherited(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19) {}
++
+   template<class U1, class U2>
+   tuple(const cons<U1, U2>& p) : inherited(p) {}
+ 
+@@ -598,7 +877,13 @@
+ 
+ // The empty tuple
+ template <>
+-class tuple<null_type, null_type, null_type, null_type, null_type, null_type, null_type, null_type, null_type, null_type>  :
++class tuple<null_type, null_type,
++            null_type, null_type, null_type,
++            null_type, null_type, null_type,
++            null_type, null_type, null_type,
++            null_type, null_type, null_type,
++            null_type, null_type, null_type,
++            null_type, null_type, null_type>:
+   public null_type
+ {
+ public:
+@@ -720,7 +1005,10 @@
+   class T0 = null_type, class T1 = null_type, class T2 = null_type,
+   class T3 = null_type, class T4 = null_type, class T5 = null_type,
+   class T6 = null_type, class T7 = null_type, class T8 = null_type,
+-  class T9 = null_type
++  class T9 = null_type, class T10 = null_type, class T11 = null_type,
++  class T12 = null_type, class T13 = null_type, class T14 = null_type,
++  class T15 = null_type, class T16 = null_type, class T17 = null_type,
++  class T18 = null_type, class T19 = null_type
+ >
+ struct make_tuple_mapper {
+   typedef
+@@ -733,7 +1021,17 @@
+           typename make_tuple_traits<T6>::type,
+           typename make_tuple_traits<T7>::type,
+           typename make_tuple_traits<T8>::type,
+-          typename make_tuple_traits<T9>::type> type;
++          typename make_tuple_traits<T9>::type,
++          typename make_tuple_traits<T10>::type,
++          typename make_tuple_traits<T11>::type,
++          typename make_tuple_traits<T12>::type,
++          typename make_tuple_traits<T13>::type,
++          typename make_tuple_traits<T14>::type,
++          typename make_tuple_traits<T15>::type,
++          typename make_tuple_traits<T16>::type,
++          typename make_tuple_traits<T17>::type,
++          typename make_tuple_traits<T18>::type,
++          typename make_tuple_traits<T19>::type> type;
+ };
+ 
+ } // end detail
+@@ -830,6 +1128,144 @@
+   return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9);
+ }
+ 
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10>
++inline typename detail::make_tuple_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>::type
++make_tuple(const T0& t0, const T1& t1, const T2& t2, const T3& t3,
++                  const T4& t4, const T5& t5, const T6& t6, const T7& t7,
++                  const T8& t8, const T9& t9, const T10& t10) {
++  typedef typename detail::make_tuple_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11>
++inline typename detail::make_tuple_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>::type
++make_tuple(const T0& t0, const T1& t1, const T2& t2, const T3& t3,
++                  const T4& t4, const T5& t5, const T6& t6, const T7& t7,
++                  const T8& t8, const T9& t9, const T10& t10, const T11& t11) {
++  typedef typename detail::make_tuple_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12>
++inline typename detail::make_tuple_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>::type
++make_tuple(const T0& t0, const T1& t1, const T2& t2, const T3& t3,
++                  const T4& t4, const T5& t5, const T6& t6, const T7& t7,
++                  const T8& t8, const T9& t9, const T10& t10, const T11& t11,
++                  const T12& t12) {
++  typedef typename detail::make_tuple_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13>
++inline typename detail::make_tuple_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>::type
++make_tuple(const T0& t0, const T1& t1, const T2& t2, const T3& t3,
++                  const T4& t4, const T5& t5, const T6& t6, const T7& t7,
++                  const T8& t8, const T9& t9, const T10& t10, const T11& t11,
++                  const T12& t12, const T13& t13) {
++  typedef typename detail::make_tuple_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T13>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14>
++inline typename detail::make_tuple_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>::type
++make_tuple(const T0& t0, const T1& t1, const T2& t2, const T3& t3,
++                  const T4& t4, const T5& t5, const T6& t6, const T7& t7,
++                  const T8& t8, const T9& t9, const T10& t10, const T11& t11,
++                  const T12& t12, const T13& t13, const T14& t14) {
++  typedef typename detail::make_tuple_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T13, T14>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14, class T15>
++inline typename detail::make_tuple_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>::type
++make_tuple(const T0& t0, const T1& t1, const T2& t2, const T3& t3,
++                  const T4& t4, const T5& t5, const T6& t6, const T7& t7,
++                  const T8& t8, const T9& t9, const T10& t10, const T11& t11,
++                  const T12& t12, const T13& t13, const T14& t14, const T15& t15) {
++  typedef typename detail::make_tuple_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T13, T14, T15>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14, class T15, class T16>
++inline typename detail::make_tuple_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>::type
++make_tuple(const T0& t0, const T1& t1, const T2& t2, const T3& t3,
++                  const T4& t4, const T5& t5, const T6& t6, const T7& t7,
++                  const T8& t8, const T9& t9, const T10& t10, const T11& t11,
++                  const T12& t12, const T13& t13, const T14& t14, const T15& t15,
++                  const T16& t16) {
++  typedef typename detail::make_tuple_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T13, T14, T15, T16>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14, class T15, class T16, class T17>
++inline typename detail::make_tuple_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17>::type
++make_tuple(const T0& t0, const T1& t1, const T2& t2, const T3& t3,
++                  const T4& t4, const T5& t5, const T6& t6, const T7& t7,
++                  const T8& t8, const T9& t9, const T10& t10, const T11& t11,
++                  const T12& t12, const T13& t13, const T14& t14, const T15& t15,
++                  const T16& t16, const T17& t17) {
++  typedef typename detail::make_tuple_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T13, T14, T15, T16, T17>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14, class T15, class T16, class T17, class T18>
++inline typename detail::make_tuple_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18>::type
++make_tuple(const T0& t0, const T1& t1, const T2& t2, const T3& t3,
++                  const T4& t4, const T5& t5, const T6& t6, const T7& t7,
++                  const T8& t8, const T9& t9, const T10& t10, const T11& t11,
++                  const T12& t12, const T13& t13, const T14& t14, const T15& t15,
++                  const T16& t16, const T17& t17, const T18& t18) {
++  typedef typename detail::make_tuple_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T13, T14, T15, T16, T17, T18>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14, class T15, class T16, class T17, class T18, class T19>
++inline typename detail::make_tuple_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>::type
++make_tuple(const T0& t0, const T1& t1, const T2& t2, const T3& t3,
++                  const T4& t4, const T5& t5, const T6& t6, const T7& t7,
++                  const T8& t8, const T9& t9, const T10& t10, const T11& t11,
++                  const T12& t12, const T13& t13, const T14& t14, const T15& t15,
++                  const T16& t16, const T17& t17, const T18& t18, const T19& t19) {
++  typedef typename detail::make_tuple_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T13, T14, T15, T16, T17, T18, T19>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19);
++}
++
+ namespace detail {
+ 
+ template<class T>
+@@ -851,7 +1287,10 @@
+   class T0 = void, class T1 = void, class T2 = void,
+   class T3 = void, class T4 = void, class T5 = void,
+   class T6 = void, class T7 = void, class T8 = void,
+-  class T9 = void
++  class T9 = void, class T10 = void, class T11 = void,
++  class T12 = void, class T13 = void, class T14 = void,
++  class T15 = void, class T16 = void, class T17 = void,
++  class T18 = void, class T19 = void
+ >
+ struct tie_mapper {
+   typedef
+@@ -864,7 +1303,17 @@
+           typename tie_traits<T6>::type,
+           typename tie_traits<T7>::type,
+           typename tie_traits<T8>::type,
+-          typename tie_traits<T9>::type> type;
++          typename tie_traits<T9>::type,
++          typename tie_traits<T10>::type,
++          typename tie_traits<T11>::type,
++          typename tie_traits<T12>::type,
++          typename tie_traits<T13>::type,
++          typename tie_traits<T14>::type,
++          typename tie_traits<T15>::type,
++          typename tie_traits<T16>::type,
++          typename tie_traits<T17>::type,
++          typename tie_traits<T18>::type,
++          typename tie_traits<T19>::type> type;
+ };
+ 
+ }
+@@ -957,10 +1406,151 @@
+   return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9);
+ }
+ 
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10>
++inline typename detail::tie_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>::type
++tie(T0& t0, T1& t1, T2& t2, T3& t3,
++                  T4& t4, T5& t5, T6& t6, T7& t7,
++                  T8& t8, T9& t9, T10 & t10) {
++  typedef typename detail::tie_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11>
++inline typename detail::tie_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>::type
++tie(T0& t0, T1& t1, T2& t2, T3& t3,
++                  T4& t4, T5& t5, T6& t6, T7& t7,
++                  T8& t8, T9& t9, T10& t10, T11& t11) {
++  typedef typename detail::tie_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12>
++inline typename detail::tie_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>::type
++tie(T0& t0, T1& t1, T2& t2, T3& t3,
++                  T4& t4, T5& t5, T6& t6, T7& t7,
++                  T8& t8, T9& t9, T10& t10, T11& t11,
++                  T12& t12) {
++  typedef typename detail::tie_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13>
++inline typename detail::tie_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>::type
++tie(T0& t0, T1& t1, T2& t2, T3& t3,
++                  T4& t4, T5& t5, T6& t6, T7& t7,
++                  T8& t8, T9& t9, T10& t10, T11& t11,
++                  T12& t12, T13& t13) {
++  typedef typename detail::tie_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14>
++inline typename detail::tie_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>::type
++tie(T0& t0, T1& t1, T2& t2, T3& t3,
++                  T4& t4, T5& t5, T6& t6, T7& t7,
++                  T8& t8, T9& t9, T10& t10, T11& t11,
++                  T12& t12, T13& t13, T14& t14) {
++  typedef typename detail::tie_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14, class T15>
++inline typename detail::tie_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>::type
++tie(T0& t0, T1& t1, T2& t2, T3& t3,
++                  T4& t4, T5& t5, T6& t6, T7& t7,
++                  T8& t8, T9& t9, T10& t10, T11& t11,
++                  T12& t12, T13& t13, T14& t14, T15& t15) {
++  typedef typename detail::tie_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14, class T15, class T16>
++inline typename detail::tie_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>::type
++tie(T0& t0, T1& t1, T2& t2, T3& t3,
++                  T4& t4, T5& t5, T6& t6, T7& t7,
++                  T8& t8, T9& t9, T10& t10, T11& t11,
++                  T12& t12, T13& t13, T14& t14, T15& t15,
++                  T16& t16) {
++  typedef typename detail::tie_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14, class T15, class T16, class T17>
++inline typename detail::tie_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17>::type
++tie(T0& t0, T1& t1, T2& t2, T3& t3,
++                  T4& t4, T5& t5, T6& t6, T7& t7,
++                  T8& t8, T9& t9, T10& t10, T11& t11,
++                  T12& t12, T13& t13, T14& t14, T15& t15,
++                  T16& t16, T17& t17) {
++  typedef typename detail::tie_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14, class T15, class T16, class T17, class T18>
++inline typename detail::tie_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18>::type
++tie(T0& t0, T1& t1, T2& t2, T3& t3,
++                  T4& t4, T5& t5, T6& t6, T7& t7,
++                  T8& t8, T9& t9, T10& t10, T11& t11,
++                  T12& t12, T13& t13, T14& t14, T15& t15,
++                  T16& t16, T17& t17, T18& t18) {
++  typedef typename detail::tie_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18);
++}
++
++template<class T0, class T1, class T2, class T3, class T4, class T5, class T6,
++         class T7, class T8, class T9, class T10, class T11, class T12, class T13,
++         class T14, class T15, class T16, class T17, class T18, class T19>
++inline typename detail::tie_mapper
++  <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>::type
++tie(T0& t0, T1& t1, T2& t2, T3& t3,
++                  T4& t4, T5& t5, T6& t6, T7& t7,
++                  T8& t8, T9& t9, T10& t10, T11& t11,
++                  T12& t12, T13& t13, T14& t14, T15& t15,
++                  T16& t16, T17& t17, T18& t18, T19& t19) {
++  typedef typename detail::tie_mapper
++           <T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>::type t;
++  return t(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19);
++}
++
++
+ template <class T0, class T1, class T2, class T3, class T4,
+-          class T5, class T6, class T7, class T8, class T9>
+-void swap(tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>& lhs,
+-          tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>& rhs);
++          class T5, class T6, class T7, class T8, class T9,
++          class T10, class T11, class T12, class T13, class T14,
++          class T15, class T16, class T17, class T18, class T19>
++void swap(tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>& lhs,
++          tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>& rhs);
+ inline void swap(null_type&, null_type&) {}
+ template<class HH>
+ inline void swap(cons<HH, null_type>& lhs, cons<HH, null_type>& rhs) {
+@@ -972,14 +1562,18 @@
+   ::boost::tuples::swap(lhs.tail, rhs.tail);
+ }
+ template <class T0, class T1, class T2, class T3, class T4,
+-          class T5, class T6, class T7, class T8, class T9>
+-inline void swap(tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>& lhs,
+-          tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>& rhs) {
+-  typedef tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9> tuple_type;
++          class T5, class T6, class T7, class T8, class T9,
++          class T10, class T11, class T12, class T13, class T14,
++          class T15, class T16, class T17, class T18, class T19>
++inline void swap(tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>& lhs,
++          tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>& rhs) {
++  typedef tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19> tuple_type;
+   typedef typename tuple_type::inherited base;
+   ::boost::tuples::swap(static_cast<base&>(lhs), static_cast<base&>(rhs));
+ }
+ 
++
++
+ } // end of namespace tuples
+ } // end of namespace boost
+ 
