@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/gts.common.eclipse.features_0.0.3.201811150951.jar" id="gts.common.eclipse.features" version="0.0.3.201811150951"/>
+</site>
